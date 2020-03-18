@@ -489,10 +489,18 @@ if __name__ == '__main__':
         dataset_val.load_coco(args.dataset, val_type, year=args.year, auto_download=args.download)
         dataset_val.prepare()
 
-        # Image Augmentation
-        # Right/Left flip 50% of the time
-        augmentation = imgaug.augmenters.Fliplr(0.5)
-
+        # Image augmentation
+        # http://imgaug.readthedocs.io/en/latest/source/augmenters.html
+        augmentation = iaa.SomeOf((0, 2), [
+            iaa.Fliplr(0.5),
+            iaa.Flipud(0.5),
+            iaa.OneOf([iaa.Affine(rotate=90),
+                       iaa.Affine(rotate=180),
+                       iaa.Affine(rotate=270)]),
+            iaa.Multiply((0.8, 1.5)),
+            iaa.GaussianBlur(sigma=(0.0, 5.0))
+        ])
+        
         # *** This training schedule is an example. Update to your needs ***
 
         # Training - Stage 1
