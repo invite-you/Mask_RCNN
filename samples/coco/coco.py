@@ -92,6 +92,11 @@ class CocoConfig(Config):
     IMAGE_MAX_DIM  =  768
     STEPS_PER_EPOCH  = 500
     BATCH_SIZE = 16
+       
+    RPN_ANCHOR_RATIOS = [[0.5, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0]] 
+    MAX_GT_INSTANCES  =  150
+    DETECTION_NMS_THRESHOLD  =  0.7
+    
 ############################################################
 #  Dataset
 ############################################################
