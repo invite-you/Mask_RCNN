@@ -507,8 +507,7 @@ if __name__ == '__main__':
                 sometimes(iaa.Affine(translate_percent={"x": (-0.2, 0.2), "y": (-0.2, 0.2)})),
                 sometimes(iaa.Affine(shear=(-16, 16))),
                 sometimes(iaa.CLAHE()),
-                sometimes(iaa.imgcorruptlike.Brightness(severity=2)),
-                sometimes(iaa.pillike.Equalize()),
+                sometimes(iaa.SigmoidContrast(gain=(3, 10), cutoff=(0.4, 0.6))),
         ])                
         
         # *** This training schedule is an example. Update to your needs ***
