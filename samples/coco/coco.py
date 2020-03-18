@@ -90,7 +90,7 @@ class CocoConfig(Config):
     GPU_COUNT  =  2
     IMAGE_MIN_DIM  =  768
     IMAGE_MAX_DIM  =  768
-    STEPS_PER_EPOCH  = 100
+    STEPS_PER_EPOCH  = 500
     BATCH_SIZE = 16
 ############################################################
 #  Dataset
@@ -519,7 +519,7 @@ if __name__ == '__main__':
                     epochs=10,
                     layers='heads',
                     augmentation=augmentation)
-
+        """
         # Training - Stage 2
         # Finetune layers from ResNet stage 4 and up
         print("Fine tune Resnet stage 4 and up")
@@ -537,7 +537,7 @@ if __name__ == '__main__':
                     epochs=40,
                     layers='all',
                     augmentation=augmentation)
-
+        """
     elif args.command == "evaluate":
         # Validation dataset
         dataset_val = CocoDataset()
