@@ -85,7 +85,10 @@ class CocoConfig(Config):
 
     # Number of classes (including background)
     NUM_CLASSES = 1 + 4  # COCO has 80 classes
-
+    
+    GPU_COUNT  =  2
+    IMAGE_MIN_DIM  =  768
+    IMAGE_MAX_DIM  =  768
 
 ############################################################
 #  Dataset
