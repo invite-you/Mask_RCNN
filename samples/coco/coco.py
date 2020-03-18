@@ -500,17 +500,16 @@ if __name__ == '__main__':
         # http://imgaug.readthedocs.io/en/latest/source/augmenters.html
         sometimes = lambda aug: iaa.Sometimes(0.4, aug)
         augmentation = iaa.Sequential(
-            [iaa.Fliplr(0.5),
-             iaa.Flipud(0.5),
-             iaa.Affine(rotate=(-360, 360)),
-             sometimes(iaa.GaussianBlur(sigma=(0.0, 2.0))),
-             sometimes(iaa.ScaleY((0.5, 1.5))),
-             sometimes(iaa.ScaleX((0.5, 1.5))),
-             sometimes(iaa.Affine(translate_percent={"x": (-0.2, 0.2), "y": (-0.2, 0.2)})),
-             sometimes(iaa.Affine(shear=(-16, 16))),
-             sometimes(iaa.imgcorruptlike.Brightness(severity=2)),
-             sometimes(iaa.pillike.Equalize()),
-        ])               
+                [iaa.Fliplr(0.5),
+                iaa.Flipud(0.5),
+                iaa.Affine(rotate=(-360, 360)),
+                sometimes(iaa.GaussianBlur(sigma=(0.0, 2.0))),
+                sometimes(iaa.Affine(translate_percent={"x": (-0.2, 0.2), "y": (-0.2, 0.2)})),
+                sometimes(iaa.Affine(shear=(-16, 16))),
+                sometimes(iaa.CLAHE()),
+                sometimes(iaa.imgcorruptlike.Brightness(severity=2)),
+                sometimes(iaa.pillike.Equalize()),
+        ])                
         
         # *** This training schedule is an example. Update to your needs ***
 
