@@ -497,15 +497,19 @@ if __name__ == '__main__':
 
         # Image augmentation
         # http://imgaug.readthedocs.io/en/latest/source/augmenters.html
-        augmentation = iaa.SomeOf((0, 2), [
-            iaa.Fliplr(0.5),
-            iaa.Flipud(0.5),
-            iaa.OneOf([iaa.Affine(rotate=90),
-                       iaa.Affine(rotate=180),
-                       iaa.Affine(rotate=270)]),
-            iaa.Multiply((0.8, 1.5)),
-            iaa.GaussianBlur(sigma=(0.0, 5.0))
-        ])
+        sometimes = lambda aug: iaa.Sometimes(0.4, aug)
+        augmentation = iaa.Sequential(
+            [iaa.Fliplr(0.5),
+             iaa.Flipud(0.5),
+             iaa.Rotate((-360, 360)),
+             sometimes(iaa.GaussianBlur(sigma=(0.0, 2.0))),
+             sometimes(iaa.ScaleY((0.5, 1.5))),
+             sometimes(iaa.ScaleX((0.5, 1.5))),
+             sometimes(iaa.Affine(translate_percent={"x": (-0.2, 0.2), "y": (-0.2, 0.2)})),
+             sometimes(iaa.Affine(shear=(-16, 16))),
+             sometimes(iaa.imgcorruptlike.Brightness(severity=2)),
+             sometimes(iaa.pillike.Equalize()),
+        ])               
         
         # *** This training schedule is an example. Update to your needs ***
 
