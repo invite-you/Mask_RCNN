@@ -90,7 +90,7 @@ class CocoConfig(Config):
     GPU_COUNT  =  2
     IMAGE_MIN_DIM  =  768
     IMAGE_MAX_DIM  =  768
-    STEPS_PER_EPOCH  = 500
+    #STEPS_PER_EPOCH  = 500
     BATCH_SIZE = 16
        
     #RPN_ANCHOR_RATIOS = [[0.5, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0]] 
@@ -521,7 +521,7 @@ if __name__ == '__main__':
         print("Training network heads")
         model.train(dataset_train, dataset_val,
                     learning_rate=config.LEARNING_RATE,
-                    epochs=10,
+                    epochs=40,
                     layers='heads',
                     augmentation=augmentation)
         """
