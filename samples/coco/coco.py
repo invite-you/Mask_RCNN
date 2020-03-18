@@ -502,7 +502,7 @@ if __name__ == '__main__':
         augmentation = iaa.Sequential(
             [iaa.Fliplr(0.5),
              iaa.Flipud(0.5),
-             iaa.Rotate((-360, 360)),
+             iaa.Affine(rotate=(-360, 360)),
              sometimes(iaa.GaussianBlur(sigma=(0.0, 2.0))),
              sometimes(iaa.ScaleY((0.5, 1.5))),
              sometimes(iaa.ScaleX((0.5, 1.5))),
