@@ -482,9 +482,7 @@ if __name__ == '__main__':
 
     # Load weights
     print("Loading weights ", model_path)
-    model.load_weights(model_path, by_name=True, exclude=[
-            "mrcnn_class_logits", "mrcnn_bbox_fc",
-            "mrcnn_bbox", "mrcnn_mask"])
+    model.load_weights(model_path, by_name=True)
 
     # Train or evaluate
     if args.command == "train":
@@ -504,11 +502,11 @@ if __name__ == '__main__':
 
         # Image augmentation
         # http://imgaug.readthedocs.io/en/latest/source/augmenters.html
-        sometimes = lambda aug: iaa.Sometimes(0.4, aug)
+        sometimes = lambda aug: iaa.Sometimes(0.5, aug)
         augmentation = iaa.Sequential(
                 [iaa.Fliplr(0.5),
                 iaa.Flipud(0.5),
-                iaa.Affine(rotate=(-360, 360)),
+                iaa.Affine(rotate=(-359, 359)),
                 sometimes(iaa.GaussianBlur(sigma=(0.0, 2.0))),
                 sometimes(iaa.Affine(translate_percent={"x": (-0.2, 0.2), "y": (-0.2, 0.2)})),
                 sometimes(iaa.Affine(shear=(-16, 16))),
@@ -518,15 +516,15 @@ if __name__ == '__main__':
         
         # *** This training schedule is an example. Update to your needs ***
 
-        """
+        
         # Training - Stage 1
         print("Training network heads")
         model.train(dataset_train, dataset_val,
                     learning_rate=config.LEARNING_RATE,
-                    epochs=40,
+                    epochs=52,
                     layers='heads',
                     augmentation=augmentation)
-        """
+        
         # Training - Stage 2
         # Finetune layers from ResNet stage 4 and up
         print("Fine tune Resnet stage 4 and up")
