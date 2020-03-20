@@ -512,6 +512,9 @@ if __name__ == '__main__':
                 sometimes(iaa.Affine(shear=(-16, 16))),
                 sometimes(iaa.CLAHE()),
                 sometimes(iaa.SigmoidContrast(gain=(3, 10), cutoff=(0.4, 0.6))),
+                sometimes(iaa.GammaContrast((0.5, 2.0))),
+                sometimes(iaa.MultiplyAndAddToBrightness(mul=(0.5, 1.5), add=(-30, 30))),
+                sometimes(iaa.MotionBlur(k=10))
         ])                
         
         # *** This training schedule is an example. Update to your needs ***
@@ -525,7 +528,7 @@ if __name__ == '__main__':
                     layers='heads',
                     augmentation=augmentation)
         
-        
+        """
         # Training - Stage 2
         # Finetune layers from ResNet stage 4 and up
         print("Fine tune Resnet stage 4 and up")
@@ -544,7 +547,7 @@ if __name__ == '__main__':
                     epochs=140,
                     layers='all',
                     augmentation=augmentation)
-        
+        """
     elif args.command == "evaluate":
         # Validation dataset
         dataset_val = CocoDataset()
