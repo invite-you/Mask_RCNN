@@ -516,7 +516,7 @@ if __name__ == '__main__':
         
         # *** This training schedule is an example. Update to your needs ***
 
-        
+        """
         # Training - Stage 1
         print("Training network heads")
         model.train(dataset_train, dataset_val,
@@ -524,6 +524,7 @@ if __name__ == '__main__':
                     epochs=52,
                     layers='heads',
                     augmentation=augmentation)
+        """
         
         # Training - Stage 2
         # Finetune layers from ResNet stage 4 and up
