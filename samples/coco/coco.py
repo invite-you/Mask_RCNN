@@ -28,7 +28,6 @@ Usage: import the module (see Jupyter notebooks for examples), or run from
 """
 
 import os
-
 import sys
 import time
 import numpy as np
@@ -528,7 +527,7 @@ if __name__ == '__main__':
         print("Training network heads")
         model.train(dataset_train, dataset_val,
                     learning_rate=config.LEARNING_RATE,
-                    epochs=59,
+                    epochs=67,
                     layers='heads',
                     augmentation=augmentation)
         
