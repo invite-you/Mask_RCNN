@@ -522,7 +522,7 @@ if __name__ == '__main__':
         
         # *** This training schedule is an example. Update to your needs ***
 
-        
+        """
         # Training - Stage 1
         print("Training network heads")
         model.train(dataset_train, dataset_val,
@@ -550,7 +550,7 @@ if __name__ == '__main__':
                     epochs=140,
                     layers='all',
                     augmentation=augmentation)
-        """
+        
     elif args.command == "evaluate":
         # Validation dataset
         dataset_val = CocoDataset()
