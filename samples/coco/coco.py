@@ -506,7 +506,7 @@ if __name__ == '__main__':
         augmentation = iaa.Sequential(
                 [iaa.Fliplr(0.5),
                 iaa.Flipud(0.5),
-                iaa.Affine(rotate=(-359, 359)),
+                iaa.Affine(rotate=(-270, 180)),
                 sometimes(iaa.GaussianBlur(sigma=(0.0, 2.0))),
                 sometimes(iaa.Affine(translate_percent={"x": (-0.2, 0.2), "y": (-0.2, 0.2)})),
                 sometimes(iaa.Affine(shear=(-16, 16))),
@@ -514,7 +514,10 @@ if __name__ == '__main__':
                 sometimes(iaa.SigmoidContrast(gain=(3, 10), cutoff=(0.4, 0.6))),
                 sometimes(iaa.GammaContrast((0.5, 2.0))),
                 sometimes(iaa.MultiplyAndAddToBrightness(mul=(0.5, 1.5), add=(-30, 30))),
-                sometimes(iaa.MotionBlur(k=10))
+                sometimes(iaa.MotionBlur(k=10)),
+                sometimes(iaa.HistogramEqualization()),
+                sometimes(iaa.LinearContrast((0.4, 1.6))),
+                sometimes(iaa.AllChannelsHistogramEqualization())
         ])                
         
         # *** This training schedule is an example. Update to your needs ***
