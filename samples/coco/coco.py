@@ -524,7 +524,7 @@ if __name__ == '__main__':
                     epochs=52,
                     layers='heads',
                     augmentation=augmentation)
-        """
+        
         
         # Training - Stage 2
         # Finetune layers from ResNet stage 4 and up
@@ -541,10 +541,10 @@ if __name__ == '__main__':
         print("Fine tune all layers")
         model.train(dataset_train, dataset_val,
                     learning_rate=config.LEARNING_RATE / 10,
-                    epochs=40,
+                    epochs=140,
                     layers='all',
                     augmentation=augmentation)
-        """
+        
     elif args.command == "evaluate":
         # Validation dataset
         dataset_val = CocoDataset()
